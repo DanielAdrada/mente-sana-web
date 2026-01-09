@@ -1,0 +1,69 @@
+﻿@{
+    Layout = "~/Views/Shared/_StudentLayout.cshtml";
+    ViewBag.Title = "Comunidad";
+}
+
+<section class="max-w-5xl mx-auto mt-10 px-6">
+
+    <!-- Título -->
+    <div class="mb-8">
+        <h2 class="text-3xl font-bold text-deep flex items-center gap-2">
+            💬 Comunidad Mente Sana
+        </h2>
+        <p class="text-muted mt-2">
+            Un espacio seguro para compartir experiencias, pensamientos y apoyo entre estudiantes.
+        </p>
+    </div>
+
+    <!-- Formulario -->
+    <div class="bg-white shadow-soft rounded-2xl p-6 mb-10">
+        <p class="text-sm text-muted mb-3">
+            💡 Recuerda: no estás solo. Tu mensaje puede ayudar a alguien más.
+        </p>
+
+        <form method="post" action="@Url.Action("Create", "Community")">
+            <textarea name="contenido"
+                      class="w-full p-4 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary resize-none"
+                      placeholder="¿Qué te gustaría compartir hoy?"
+                      rows="4"
+                      required></textarea>
+
+            <div class="flex justify-end mt-4">
+                <button type="submit"
+                        class="px-6 py-2 bg-primary text-white font-semibold rounded-xl hover:bg-primary-600 transition">
+                    Publicar 💙
+                </button>
+            </div>
+        </form>
+    </div>
+
+    <!-- Comentarios -->
+    <div class="space-y-6">
+        @foreach (var item in Model)
+        {
+            <div class="bg-white shadow-soft rounded-2xl p-5">
+
+                <div class="flex items-center gap-4 mb-2">
+                    <!-- Avatar simbólico -->
+                    <div class="w-10 h-10 flex items-center justify-center rounded-full bg-primary text-white font-bold">
+                        @item.Usuario.Substring(0, 1)
+                    </div>
+
+                    <div class="flex-1">
+                        <p class="font-semibold text-deep">
+                            @item.Usuario
+                        </p>
+                        <p class="text-xs text-muted">
+                            @item.Fecha.ToString("dd MMM yyyy")
+                        </p>
+                    </div>
+                </div>
+
+                <p class="text-gray-700 leading-relaxed">
+                    @item.Contenido
+                </p>
+            </div>
+        }
+    </div>
+
+</section>

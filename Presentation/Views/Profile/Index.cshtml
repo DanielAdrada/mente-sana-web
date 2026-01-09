@@ -1,0 +1,33 @@
+﻿@model Presentation.Models.PerfilViewModel
+@{
+    Layout = "~/Views/Shared/_StudentLayout.cshtml";
+    ViewBag.Title = "Mi Perfil";
+}
+
+<h2>Mi Perfil</h2>
+
+@if (ViewBag.Mensaje != null)
+{
+    <p style="color:green">@ViewBag.Mensaje</p>
+}
+@if (ViewBag.Error != null)
+{
+    <p style="color:red">@ViewBag.Error</p>
+}
+
+@using (Html.BeginForm())
+{
+    @Html.HiddenFor(m => m.Id)
+
+    <div>
+        <label>Nombre:</label>
+        @Html.TextBoxFor(m => m.Nombre)
+    </div>
+
+    <div>
+        <label>Apellido:</label>
+        @Html.TextBoxFor(m => m.Apellido)
+    </div>
+
+    <button type="submit">Guardar cambios</button>
+}
