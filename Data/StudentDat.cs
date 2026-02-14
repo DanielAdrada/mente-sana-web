@@ -1,83 +1,16 @@
-﻿using MySql.Data.MySqlClient;
+﻿using Data.Models;
+using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Web;
-using Menste_Sana.Models;
 
-
-namespace Menste_Sana
+namespace Data
 {
-    public class UserDat
+    public class StudentDat
     {
-        public string Login(string usuario, string passwordHash)
-        {
-            Persistence db = new Persistence();
-
-            using (MySqlConnection conn = db.OpenConnection())
-            {
-                using (MySqlCommand cmd = new MySqlCommand("proLoginUsuario", conn))
-                {
-                    cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.AddWithValue("v_nombre_usuario", usuario);
-                    cmd.Parameters.AddWithValue("v_contrasena", passwordHash);
-
-                    using (MySqlDataReader reader = cmd.ExecuteReader())
-                    {
-                        if (reader.Read())
-                            return reader["usu_rol"].ToString();
-
-                        return null;
-                    }
-                }
-            }
-        }
-
-        public bool RegistrarUsuarioConSalt(
-            string id,
-            string nombreUsuario,
-            string hashContrasena,
-            string salt,
-            string rol
-        )
-        {
-            Persistence db = new Persistence();
-
-            using (MySqlConnection conn = db.OpenConnection())
-            {
-                using (MySqlCommand cmd = new MySqlCommand("proInsertUsuario", conn))
-                {
-                    cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.AddWithValue("v_id", id);
-                    cmd.Parameters.AddWithValue("v_nombre_usuario", nombreUsuario);
-                    cmd.Parameters.AddWithValue("v_contrasena", hashContrasena);
-                    cmd.Parameters.AddWithValue("v_salt", salt);
-                    cmd.Parameters.AddWithValue("v_rol", rol);
-
-                    return cmd.ExecuteNonQuery() > 0;
-                }
-            }
-        }
-        public string GetSalt(string usuario)
-        {
-            Persistence db = new Persistence();
-
-            using (MySqlConnection conn = db.OpenConnection())
-            {
-                string sql = "SELECT usu_salt FROM tbl_usuarios WHERE usu_nombre_usuario = @usuario";
-                using (MySqlCommand cmd = new MySqlCommand(sql, conn))
-                {
-                    cmd.Parameters.AddWithValue("@usuario", usuario);
-                    object result = cmd.ExecuteScalar();
-                    return result?.ToString();
-                }
-            }
-        }
-
-
-        // ================= ESTUDIANTES =================
-        public bool InsertPerfil(string id, string nombre, string apellido)
+        public bool InsertStudent(string id, string nombre, string apellido)
         {
             Persistence db = new Persistence();
 
@@ -94,7 +27,7 @@ namespace Menste_Sana
                 }
             }
         }
-        public PerfilDTO ObtenerPerfil(string id)
+        public ProfileDTO GetProfile(string id)
         {
             Persistence db = new Persistence();
 
@@ -111,14 +44,14 @@ namespace Menste_Sana
                         if (!reader.Read())
                             return null;
 
-                        PerfilDTO perfil = new PerfilDTO
+                        ProfileDTO perfil = new ProfileDTO
                         {
                             Id = reader["est_id"].ToString(),
                             Nombre = reader["est_nombre"].ToString(),
                             Apellido = reader["est_apellido"].ToString()
                         };
 
-                        reader.Close(); 
+                        reader.Close();
 
                         // Obtener nombre de usuario
                         using (MySqlCommand cmdUser = new MySqlCommand(
@@ -135,7 +68,7 @@ namespace Menste_Sana
             }
         }
 
-        public bool UpdatePerfil(string id, string nombre, string apellido)
+        public bool UpdateStudent(string id, string nombre, string apellido)
         {
             Persistence db = new Persistence();
 
@@ -152,8 +85,7 @@ namespace Menste_Sana
                 }
             }
         }
-
-        public bool ExistePerfil(string id)
+        public bool ExistsStudent(string id)
         {
             Persistence db = new Persistence();
 

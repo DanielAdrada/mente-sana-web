@@ -1,7 +1,7 @@
 ﻿using MySql.Data.MySqlClient;
 using System.Configuration;
 
-namespace Menste_Sana
+namespace Data
 {
     public class Persistence
     {

@@ -1,4 +1,4 @@
-﻿using Menste_Sana.Models;
+﻿using Data.Models;
 using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
@@ -6,7 +6,7 @@ using System.Data;
 using System.Linq;
 using System.Web;
 
-namespace Menste_Sana
+namespace Data
 {
     public class CommentDat
     {
@@ -49,6 +49,14 @@ namespace Menste_Sana
                             {
                                 Id = Convert.ToInt32(reader["com_id"]),
                                 Usuario = reader["usu_nombre_usuario"].ToString(),
+
+                                Nombre = reader["est_nombre"].ToString(),
+                                Apellido = reader["est_apellido"].ToString(),
+
+                                FotoRuta = reader["per_foto_ruta"] == DBNull.Value
+                                    ? null
+                                    : reader["per_foto_ruta"].ToString(),
+
                                 Contenido = reader["com_contenido"].ToString(),
                                 Fecha = Convert.ToDateTime(reader["com_fecha"])
                             });

@@ -34,6 +34,11 @@
 
 <body class="bg-bg dark:bg-slate-900 text-text dark:text-slate-100 transition-colors duration-300">
 
+    @{
+        var currentController = ViewContext.RouteData.Values["controller"]?.ToString();
+    }
+
+    <!-- HEADER -->
     <header class="bg-card dark:bg-slate-800 shadow-soft sticky top-0 z-50 transition-colors duration-300">
 
         <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
@@ -47,12 +52,41 @@
             </div>
 
             <!-- Nav -->
-            <nav class="hidden md:flex gap-6 font-medium text-gray-700 dark:text-gray-300">
-                <a href="@Url.Action("Index", "Students")" class="hover:text-secondary dark:hover:text-secondary transition-colors">Inicio</a>
-                <a href="#recursos" class="hover:text-secondary dark:hover:text-secondary transition-colors">Recursos</a>
-                <a href="@Url.Action("Index","Community")" class="hover:text-secondary dark:hover:text-secondary transition-colors">Comunidad</a>
-                <a href="@Url.Action("Index", "Profile")" class="hover:text-secondary dark:hover:text-secondary transition-colors">Mi Perfil</a>
+            <nav class="hidden md:flex gap-6 font-medium">
+                <a href="@Url.Action("Index", "Students")"
+                   class="@(currentController == "Students"
+                       ? "text-secondary border-b-2 border-secondary pb-1"
+                       : "text-gray-700 dark:text-gray-300 hover:text-secondary transition-colors")">
+                    Inicio
+                </a>
+
+                <a href="@Url.Action("Survey", "TestEmotional")"
+                   class="@(currentController == "TestEmotional"
+                         ? "text-secondary border-b-2 border-secondary pb-1"
+                         : "text-gray-700 dark:text-gray-300 hover:text-secondary transition-colors")">
+                    Test emocional
+                </a>
+
+                <a href="#recursos"
+                   class="text-gray-700 dark:text-gray-300 hover:text-secondary transition-colors">
+                    Recursos
+                </a>
+
+                <a href="@Url.Action("Index","Community")"
+                   class="@(currentController == "Community"
+                       ? "text-secondary border-b-2 border-secondary pb-1"
+                       : "text-gray-700 dark:text-gray-300 hover:text-secondary transition-colors")">
+                    Comunidad
+                </a>
+
+                <a href="@Url.Action("Index", "Profile")"
+                   class="@(currentController == "Profile"
+                       ? "text-secondary border-b-2 border-secondary pb-1"
+                       : "text-gray-700 dark:text-gray-300 hover:text-secondary transition-colors")">
+                    Mi Perfil
+                </a>
             </nav>
+
 
             <!-- Actions -->
             <div class="flex items-center gap-3">
@@ -70,7 +104,10 @@
 
 
     <!-- CONTENIDO DE LA VISTA -->
-    @RenderBody()
+    <div id="page-transition"
+         class="opacity-100 translate-y-0 scale-100 transition-all duration-700 ease-out">
+        @RenderBody()
+    </div>
 
     <footer class="text-center text-muted py-6">
         © 2025 MenteSana · Un espacio seguro para ti 💙
@@ -82,6 +119,8 @@
 
     <!-- JS SOLO ESTUDIANTE -->
     <script src="~/Scripts/student.js"></script>
+
+    @RenderSection("Scripts", required: false)
 
 </body>
 </html>

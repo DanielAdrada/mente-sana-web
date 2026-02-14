@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -16,6 +16,13 @@ namespace Presentation
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+
+            // 🚀 ARRANCAR API PYTHON AUTOMÁTICAMENTE
+            PythonApiStarter.Start();
+        }
+        protected void Application_End()
+        {
+            PythonApiStarter.Stop();
         }
     }
 }

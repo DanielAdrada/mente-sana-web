@@ -9,7 +9,7 @@ namespace Presentation.Controllers
 {
     public class HomeController : Controller
     {
-        UserLog userLogic = new UserLog();
+        ProfileLog profileLogic = new ProfileLog();
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";
@@ -28,7 +28,7 @@ namespace Presentation.Controllers
             if (Session["Usuario"] == null)
                 return RedirectToAction("Index", "Login");
 
-            if (!userLogic.ExistePerfil(Session["Usuario"].ToString()))
+            if (!profileLogic.ExistsProfile(Session["Usuario"].ToString()))
                 return RedirectToAction("Index", "Profile");
 
             return View();

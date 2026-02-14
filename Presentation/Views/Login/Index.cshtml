@@ -161,6 +161,35 @@
             {
                 @Html.AntiForgeryToken()
 
+                <!-- Rol -->
+                <div class="space-y-2">
+                    <label class="block text-sm font-semibold text-gray-700">
+                        👤 Tipo de usuario
+                    </label>
+
+                    <div class="grid grid-cols-2 gap-3">
+                        <label class="cursor-pointer">
+                            <input type="radio" name="Rol" value="ESTUDIANTE" class="hidden peer" required>
+                            <div class="rounded-xl border px-4 py-3 text-center text-sm font-medium
+                        transition-all duration-200
+                        peer-checked:border-menteGreen peer-checked:bg-menteGreen/10 peer-checked:text-menteGreen
+                        hover:border-menteGreen">
+                                🎓 Estudiante
+                            </div>
+                        </label>
+
+                        <label class="cursor-pointer">
+                            <input type="radio" name="Rol" value="PSICOLOGO" class="hidden peer" required>
+                            <div class="rounded-xl border px-4 py-3 text-center text-sm font-medium
+                        transition-all duration-200
+                        peer-checked:border-menteBlue peer-checked:bg-menteBlue/10 peer-checked:text-menteBlue
+                        hover:border-menteBlue">
+                                🧠 Psicólogo
+                            </div>
+                        </label>
+                    </div>
+                </div>
+
                 <!-- Usuario -->
                 <div>
                     <label class="mb-1 block text-sm font-medium text-gray-700">
@@ -194,21 +223,6 @@
                         </button>
                     </div>
                 </div>
-                <!-- Rol -->
-                <div>
-                    <label class="mb-1 block text-sm font-medium text-gray-700">
-                        Ingresar como
-                    </label>
-
-                    <select name="Rol"
-                            class="w-full rounded-xl border px-4 py-3
-                   focus:ring-menteBlue/30 focus:border-menteBlue outline-none"
-                            required>
-                        <option value="">Seleccione una opción</option>
-                        <option value="ESTUDIANTE">Estudiante</option>
-                        <option value="PSICOLOGO">Psicólogo</option>
-                    </select>
-                </div>
 
                 <!-- Botón -->
                 <button type="submit"
@@ -222,7 +236,7 @@
 </div>
 
 
-<!-- ================= REGISTER MODAL (TAILWIND) ================= -->
+<!-- ================= REGISTER MODAL ================= -->
 <div id="registerModal"
      class="fixed inset-0 z-50 flex items-center justify-center
        bg-black/50 opacity-0 pointer-events-none transition-all duration-300">
@@ -285,43 +299,49 @@
                 </div>
 
                 <!-- Password -->
-                <div class="relative">
-                    <input id="regPassword"
-                           name="Identificacion"
-                           type="password"
-                           placeholder="Contraseña"
-                           required
-                           class="w-full rounded-xl border px-4 py-3 pr-12
-                  focus:ring-menteBlue/30 focus:border-menteBlue outline-none" />
+                <div class="space-y-1">
+                    <div class="relative">
+                        <input id="regPassword"
+                               name="Identificacion"
+                               type="password"
+                               placeholder="Contraseña"
+                               required
+                               class="w-full rounded-xl border px-4 py-3 pr-12
+                      focus:ring-menteBlue/30 focus:border-menteBlue outline-none" />
 
-                    <button type="button"
-                            class="absolute right-4 top-1/2 -translate-y-1/2
-                   toggle-password text-gray-700 hover:text-black"
-                            aria-label="Mostrar contraseña">
-                        🙈
-                    </button>
-                </div>
-                <!-- Confirm Password -->
-                <div class="relative">
-                    <input id="regConfirmPassword"
-                           type="password"
-                           placeholder="Confirmar contraseña"
-                           required
-                           class="w-full rounded-xl border px-4 py-3 pr-12
-                  focus:ring-menteBlue/30 focus:border-menteBlue outline-none" />
+                        <button type="button"
+                                class="absolute right-4 top-1/2 -translate-y-1/2
+                       toggle-password text-gray-700 hover:text-black">
+                            🙈
+                        </button>
+                    </div>
 
-                    <button type="button"
-                            class="absolute right-4 top-1/2 -translate-y-1/2
-                   toggle-password text-gray-700 hover:text-black"
-                            aria-label="Mostrar contraseña">
-                        🙈
-                    </button>
-                </div>
-                <div class="mt-2 text-sm space-y-1">
-                    <p id="rule-length" class="text-gray-400">
+                    <p id="rule-length"
+                       class="text-xs flex items-center gap-1 text-gray-400 transition">
                         ⭕ Mínimo 6 caracteres
                     </p>
-                    <p id="rule-match" class="text-gray-400">
+                </div>
+
+                <!-- Confirm Password -->
+                <div class="space-y-1">
+                    <div class="relative">
+                        <input id="regConfirmPassword"
+                               name="ConfirmPassword"
+                               type="password"
+                               placeholder="Confirmar contraseña"
+                               required
+                               class="w-full rounded-xl border px-4 py-3 pr-12
+                      focus:ring-menteBlue/30 focus:border-menteBlue outline-none" />
+
+                        <button type="button"
+                                class="absolute right-4 top-1/2 -translate-y-1/2
+                       toggle-password text-gray-700 hover:text-black">
+                            🙈
+                        </button>
+                    </div>
+
+                    <p id="rule-match"
+                       class="text-xs flex items-center gap-1 text-gray-400 transition">
                         ⭕ Las contraseñas coinciden
                     </p>
                 </div>
@@ -353,26 +373,7 @@
     <div id="openRegisterModalAuto" data-open="true"></div>
 }
 
-<script>
-    document.addEventListener("DOMContentLoaded", () => {
-        const form = document.querySelector("#registerModal form");
-        if (!form) return;
 
-        const pass = document.getElementById("regPassword");
-        const confirm = document.getElementById("regConfirmPassword");
-        const errorBox = document.getElementById("regPasswordError");
-
-        form.addEventListener("submit", (e) => {
-            if (pass.value !== confirm.value) {
-                e.preventDefault();
-                errorBox.classList.remove("hidden");
-                confirm.focus();
-            } else {
-                errorBox.classList.add("hidden");
-            }
-        });
-    });
-</script>
 
 
 

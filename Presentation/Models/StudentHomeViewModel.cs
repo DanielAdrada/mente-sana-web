@@ -1,4 +1,4 @@
-﻿using Menste_Sana.Models;
+﻿using Data.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +8,7 @@ namespace Presentation.Models
 {
     public class StudentHomeViewModel
     {
-        public PerfilDTO Perfil { get; set; }
+        public ProfileDTO Perfil { get; set; }
         public List<CommentDTO> Comentarios { get; set; }
     }
 }

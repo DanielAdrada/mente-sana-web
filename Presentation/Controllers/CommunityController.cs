@@ -1,5 +1,6 @@
 ﻿using Logic;
-using Menste_Sana.Models;
+using Data.Models;
+using Presentation.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,8 +20,23 @@ namespace Presentation.Controllers
             if (Session["UserId"] == null)
                 return RedirectToAction("Index", "Login");
 
-            List<CommentDTO> comentarios = commentLog.ObtenerComentarios();
-            return View(comentarios);
+            // 1. Traer DTOs desde lógica
+            List<CommentDTO> comentariosDTO = commentLog.ObtenerComentarios();
+
+            // 2. Mapear DTO → ViewModel
+            List<CommentViewModel> comentariosVM = comentariosDTO.Select(c => new CommentViewModel
+            {
+                UserId = c.Id,
+                Usuario = c.Usuario,
+                Nombre = c.Nombre,
+                Apellido = c.Apellido,
+                FotoPerfil = c.FotoRuta,
+                Contenido = c.Contenido,
+                Fecha = c.Fecha
+            }).ToList();
+
+            // 3. Enviar ViewModel a la vista
+            return View(comentariosVM);
         }
 
         // POST: Community/Create

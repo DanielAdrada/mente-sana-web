@@ -6,7 +6,7 @@ using System.Web;
 
 namespace Presentation.Models
 {
-    public class PerfilViewModel
+    public class ProfileViewModel
     {
         public string Id { get; set; }
 
@@ -20,5 +20,11 @@ namespace Presentation.Models
 
         [Display(Name = "Usuario")]
         public string Usuario { get; set; }
+
+        //Ruta de la imagen (BD)
+        public string FotoRuta { get; set; }
+
+        //Archivo recibido del formulario
+        public HttpPostedFileBase Foto { get; set; }
     }
 }

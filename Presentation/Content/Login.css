@@ -121,6 +121,13 @@ body {
         margin-bottom: 20px;
     }
 
+#loginModal,
+#registerModal {
+    display: flex !important;
+    z-index: 9999 !important;
+}
+
+
 
 
 

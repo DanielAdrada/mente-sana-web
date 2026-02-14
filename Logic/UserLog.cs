@@ -1,5 +1,6 @@
-﻿using Menste_Sana;
-using Menste_Sana.Models;
+﻿using System.Data;
+using Data.Models;
+using Data;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -127,30 +128,25 @@ namespace Logic
             if (!creado)
                 return false;
 
-            return GuardarPerfil(id, nombre, apellido);
+            // Crear estudiante 
+            StudentDat studentDat = new StudentDat();
+            bool creadoEstudiante = studentDat.InsertStudent(id, nombre, apellido);
+
+            if (!creadoEstudiante)
+                return false;
+
+            // crear perfil vacío
+            ProfileDat profileDat = new ProfileDat();
+            profileDat.InsertProfile(id, id);
+
+            return true;
         }
-
-
-
-        // ================= PERFIL =================
-        public PerfilDTO ObtenerPerfil(string id)
+        public bool UpdateUsername(string userId, string nuevoUsuario)
         {
-            return userDat.ObtenerPerfil(id);
-        }
+            if (string.IsNullOrWhiteSpace(nuevoUsuario))
+                return false;
 
-        public bool ExistePerfil(string id)
-        {
-            return userDat.ExistePerfil(id);
+            return userDat.UpdateUsername(userId, nuevoUsuario);
         }
-
-        public bool GuardarPerfil(string id, string nombre, string apellido)
-        {
-            if (ExistePerfil(id))
-                return userDat.UpdatePerfil(id, nombre, apellido);
-            else
-                return userDat.InsertPerfil(id, nombre, apellido);
-        }
-
     }
-
 }

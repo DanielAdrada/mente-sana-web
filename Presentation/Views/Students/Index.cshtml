@@ -23,11 +23,9 @@
             </p>
 
             <div class="flex flex-wrap gap-3 mt-6">
-                <button class="bg-white dark:bg-gray-700 text-deep dark:text-white px-5 py-3 rounded-xl font-semibold shadow hover:-translate-y-[2px] transition">
+                <button onclick="location.href='@Url.Action("Survey","TestEmotional")'"
+                        class="bg-white dark:bg-gray-700 text-deep dark:text-white px-5 py-3 rounded-xl font-semibold shadow hover:-translate-y-[2px] transition">
                     🧭 Test de emociones
-                </button>
-                <button class="bg-black/20 dark:bg-white/10 text-white dark:text-white px-5 py-3 rounded-xl font-semibold hover:bg-black/30 dark:hover:bg-white/20 transition">
-                    🌿 Respiración guiada
                 </button>
             </div>
         </div>
@@ -46,45 +44,84 @@
 
         <div class="grid md:grid-cols-3 sm:grid-cols-2 gap-4">
 
-            <article class="group bg-gradient-to-b from-blue-50 dark:from-slate-700 to-transparent
-                    border border-blue-200 dark:border-slate-600 rounded-xl3 p-4 flex flex-col gap-3
-                    hover:shadow transition">
-                <span class="text-3xl">🧘</span>
-                <strong class="text-deep dark:text-white">Mindfulness 5 min</strong>
-                <p class="text-sm text-muted dark:text-gray-300">
+            <article class="group relative overflow-hidden rounded-2xl p-5
+           bg-gradient-to-br from-blue-100 via-white to-blue-50
+           dark:from-slate-700 dark:via-slate-800 dark:to-slate-700
+           border border-blue-200/60 dark:border-slate-600
+           shadow-sm hover:shadow-xl
+           transition-all duration-500
+           hover:-translate-y-2 hover:scale-[1.02]">
+
+                <!-- Glow -->
+                <div class="absolute inset-0 bg-blue-200/30 opacity-0 group-hover:opacity-100 blur-2xl transition"></div>
+
+                <span class="relative text-4xl">🧘</span>
+
+                <strong class="relative text-deep dark:text-white text-lg">
+                    Mindfulness 5 min
+                </strong>
+
+                <p class="relative text-sm text-muted dark:text-gray-300">
                     Ejercicio rápido para calmar mente y cuerpo.
                 </p>
-                <button class="mt-auto bg-white dark:bg-gray-700 text-deep dark:text-white px-4 py-2 rounded-xl group-hover:bg-blue-100 dark:group-hover:bg-gray-600 transition">
+
+                <button class="relative mt-auto bg-blue-500 text-white px-4 py-2 rounded-xl
+               hover:bg-blue-600 transition font-semibold">
                     Comenzar
                 </button>
             </article>
 
-            <article class="group bg-gradient-to-b from-blue-50 dark:from-slate-700 to-transparent
-        border border-blue-200 dark:border-slate-600 rounded-xl3 p-4 flex flex-col gap-3
-        hover:shadow transition">
-                <span class="text-3xl">🧠</span>
-                <strong class="text-deep dark:text-white">Mindfulness 5 min</strong>
-                <p class="text-sm text-muted dark:text-gray-300">
+            <article class="group relative overflow-hidden rounded-2xl p-5
+           bg-gradient-to-br from-purple-100 via-white to-purple-50
+           dark:from-slate-700 dark:via-slate-800 dark:to-slate-700
+           border border-purple-200/60 dark:border-slate-600
+           shadow-sm hover:shadow-xl
+           transition-all duration-500
+           hover:-translate-y-2 hover:scale-[1.02]">
+
+                <div class="absolute inset-0 bg-purple-200/30 opacity-0 group-hover:opacity-100 blur-2xl transition"></div>
+
+                <span class="relative text-4xl">🧠</span>
+
+                <strong class="relative text-deep dark:text-white text-lg">
+                    Explora tus emociones
+                </strong>
+
+                <p class="relative text-sm text-muted dark:text-gray-300">
                     Guía visual sencilla para entender lo que sientes.
                 </p>
-                < <button class="mt-auto bg-white dark:bg-gray-700 text-deep dark:text-white px-4 py-2 rounded-xl group-hover:bg-blue-100 dark:group-hover:bg-gray-600 transition">
+
+                <button class="relative mt-auto bg-purple-500 text-white px-4 py-2 rounded-xl
+               hover:bg-purple-600 transition font-semibold">
                     Ver guía
                 </button>
             </article>
 
-            <article class="group bg-gradient-to-b from-blue-50 dark:from-slate-700 to-transparent
-        border border-blue-200 dark:border-slate-600 rounded-xl3 p-4 flex flex-col gap-3
-        hover:shadow transition">
-                <span class="text-3xl">🌙</span>
-                <strong class="text-deep dark:text-white">Mindfulness 5 min</strong>
-                <p class="text-sm text-muted dark:text-gray-300">
-                    Checklist práctico para descansar mejor.
+            <article class="group relative overflow-hidden rounded-2xl p-5
+           bg-gradient-to-br from-indigo-100 via-white to-indigo-50
+           dark:from-slate-700 dark:via-slate-800 dark:to-slate-700
+           border border-indigo-200/60 dark:border-slate-600
+           shadow-sm hover:shadow-xl
+           transition-all duration-500
+           hover:-translate-y-2 hover:scale-[1.02]">
+
+                <div class="absolute inset-0 bg-indigo-200/30 opacity-0 group-hover:opacity-100 blur-2xl transition"></div>
+
+                <span class="relative text-4xl">🌙</span>
+
+                <strong class="relative text-deep dark:text-white text-lg">
+                    Dormir mejor
+                </strong>
+
+                <p class="relative text-sm text-muted dark:text-gray-300">
+                    Checklist práctico para mejorar tu descanso.
                 </p>
-                <button class="mt-auto bg-white dark:bg-gray-700 text-deep dark:text-white px-4 py-2 rounded-xl group-hover:bg-blue-100 dark:group-hover:bg-gray-600 transition">
+
+                <button class="relative mt-auto bg-indigo-500 text-white px-4 py-2 rounded-xl
+               hover:bg-indigo-600 transition font-semibold">
                     Abrir
                 </button>
             </article>
-
         </div>
     </section>
 
@@ -104,7 +141,10 @@
                 foreach (var item in Model.Comentarios.Take(3))
 
                 {
-                    <div class="bg-gray-50 dark:bg-gray-700 rounded-xl p-3">
+                    <div class="bg-gradient-to-br from-gray-50 to-white
+            dark:from-slate-700 dark:to-slate-800
+            rounded-2xl p-4 border border-gray-200 dark:border-slate-600
+            hover:shadow-md transition">
                         <strong class="text-deep dark:text-white">
                             @item.Usuario
                         </strong>

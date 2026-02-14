@@ -1,5 +1,5 @@
 ﻿using Logic;
-using Menste_Sana.Models;
+using Data.Models;
 using Presentation.Models;
 using System;
 using System.Collections.Generic;
@@ -18,12 +18,12 @@ namespace Presentation.Controllers
 
             string id = Session["UserId"].ToString();
 
-            UserLog userLog = new UserLog();
+            ProfileLog profileLogic = new ProfileLog();
             CommentLog commentLog = new CommentLog();
 
             var model = new StudentHomeViewModel
             {
-                Perfil = userLog.ObtenerPerfil(id),
+                Perfil = profileLogic.GetProfile(id),
                 Comentarios = commentLog.ObtenerComentariosPositivos()
             };
 
